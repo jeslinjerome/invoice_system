@@ -1,0 +1,42 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+ {% endblock %}
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <a class="btn btn-primary btn-lg" href="{% url 'create_invoice' %}" role="button">Create Invoice</a>
+</div>
+
+ <div class="container border-top py-2">
+    <div class="py-5">
+        <form class="" method="get" action=".">
+            <input type="text" name="q" placeholder="Search invoices">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <div class="py-3">
+        <ul>
+        {% for invoice in invoice_list %}
+            <div class="invoice-item">
+                <p>Invoice Number: {{ invoice.invoice_number }}</p>
+                <p>Client Name: {{ invoice.client_name }}</p>
+                <p>Amount: {{ invoice.amount }}</p>
+                <form action="{% url 'invoice_template' invoice.id %}" method="get" target="_blank">
+                    <button class="btn btn-primary" type="submit">Preview</button>
+                </form>
+                <form action="{% url 'invoice_template' invoice.id %}" method="get" target="_blank">
+                    <button class="btn btn-primary mx-2" type="submit">Generate PDF</button>
+                </form>
+            </div>
+        {% empty %}
+            <li>No invoices available.</li>
+        {% endfor %}
+    </ul>
+    </div>
+ </div>
+
+{% endblock %}

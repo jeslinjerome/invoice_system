@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Invoice</title>
+    <link rel="stylesheet" href="{% static 'css/invoice_template.css' %}">
+</head>
+<body>
+    <div class="invoice-box">
+        <div class="header-section">
+            <h2>Invoice</h2>
+            <div>Date: {{ invoice.invoice_date }}</div>
+        </div>
+
+        <div>Invoice #: {{ invoice.invoice_number }}</div>
+        <div>Due Date: {{ invoice.due_date }}</div>
+
+        <br>
+        <div class="d-flex justify-content-around row">
+            <div class="from">
+            <strong>From:</strong>
+            <div>{{ invoice.full_name }}</div>
+            <div>{{ invoice.email_address }}</div>
+            <div>{{ invoice.address }}</div>
+            <div>{{ invoice.phone_number }}</div>
+            <div>Bank: {{ invoice.bank_name }}</div>
+            <div>Account #: {{ invoice.bank_account_number }}</div>
+            <div>PAN #: {{ invoice.pan_number }}</div>
+        </div>
+            <div class="to">
+            <strong>To:</strong>
+            <div>{{ invoice.client_name }}</div>
+            <div>{{ invoice.client_address }}</div>
+        </div>
+        </div>
+
+        <br>
+
+        <table class="table">
+            <tr class="heading">
+                <td>Item Description</td>
+                <td>Quantity</td>
+                <td>Amount</td>
+            </tr>
+{#            {% for item in invoice.items.all %}#}
+            <tr class="item">
+                <td>{{ invoice.item_description }}</td>
+                <td>{{ invoice.quantity }}</td>
+                <td>{{ invoice.amount }}</td>
+            </tr>
+{#            {% endfor %}#}
+            <tr class="total">
+                <td></td>
+                <td>Subtotal:</td>
+                <td>{{ invoice.subtotal }}</td>
+            </tr>
+            <tr class="total">
+                <td></td>
+                <td>Tax ({{ invoice.tax_rate }}%):</td>
+                <td>{{ invoice.tax_amount }}</td>
+            </tr>
+            <tr class="total">
+                <td></td>
+                <td>Other Charges:</td>
+                <td>{{ invoice.other_charges }}</td>
+            </tr>
+            <tr class="total">
+                <td></td>
+                <td>Total:</td>
+                <td>{{ invoice.total }}</td>
+            </tr>
+        </table>
+
+        <div class="footer-section">
+            <p>Thank you for your business!</p>
+        </div>
+    </div>
+</body>
+</html>

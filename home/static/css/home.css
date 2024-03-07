@@ -1,0 +1,38 @@
+/* Basic styles for the container */
+.container {
+    width: 100%;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+
+/* Using Flexbox for the invoice items */
+.invoice-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+/* Style for individual elements inside each invoice item */
+.invoice-item p {
+    margin: 0 10px;
+    flex: 1; /* Allows each part to grow evenly */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .invoice-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .invoice-item p {
+        margin: 5px 0;
+    }
+
+    .invoice-item form {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
